@@ -1,5 +1,6 @@
 import GetTwitchVODStart from './GetTwitchVODStart';
 import CreateDescription from './CreateDescription';
+import GetWCLFightTimings from './GetWCLFightTimings';
 
 export default async function GenerateDescription(
   VODId: string | string[],
@@ -10,5 +11,8 @@ export default async function GenerateDescription(
   }
 
   const VODStartTime = await GetTwitchVODStart(VODId.toString());
-  return CreateDescription(ReportID.toString(), VODStartTime);
+  const { ReportStartTime, ReportFightData } = await GetWCLFightTimings(ReportID.toString());
+  return CreateDescription(VODStartTime, ReportStartTime, ReportFightData);
+
+  //   return CreateDescription(WCLData, VODStartTime);
 }

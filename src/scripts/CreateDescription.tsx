@@ -1,6 +1,7 @@
-export default function CreateDescription(ReportID: string, TwitchStartTime: number) {
-  if (ReportID == undefined) {
-    return '';
-  }
-  return ReportID.toString() + ' aaaaaaa';
+export default function CreateDescription(
+  TwitchStartTime: number,
+  ReportStartTime: number,
+  ReportFightData
+) {
+  return undefined;
 }
