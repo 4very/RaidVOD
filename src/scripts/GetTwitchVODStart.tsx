@@ -10,16 +10,12 @@ function getApiClient(): ApiClient {
   return apiClient;
 }
 
-export default async function GetTwitchVODStart(VODId: string | string[]) {
+export default async function GetTwitchVODStart(VODId: string) {
   if (VODId == undefined) {
     return 0;
   }
 
   const apiClient = getApiClient();
-  const VOD = await apiClient.helix.videos.getVideoById(VODId.toString());
-  return VOD.creationDate.getTime() / 1000;
-
-  const VODId_number = parseInt(VODId.toString());
-
-  return VODId_number + 5;
+  const VOD = await apiClient.helix.videos.getVideoById(VODId);
+  return Math.floor(VOD.creationDate.getTime() / 1000);
 }

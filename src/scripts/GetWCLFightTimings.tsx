@@ -18,7 +18,7 @@ async function getToken(): Promise<string> {
 }
 
 async function getFightsData(ReportID: string) {
-  let query = `{ reportData { report(code: "${ReportID}") { startTime, fights{ id, startTime, endTime } } } }`;
+  let query = `{ reportData { report(code: "${ReportID}") { startTime, fights{ id, startTime, endTime, fightPercentage, encounterID, kill, name } } } }`;
 
   const response = await fetch('https://www.warcraftlogs.com/api/v2/client', {
     method: 'POST',
@@ -43,5 +43,5 @@ export default async function GetWCLFightTimings(
   //   const token = await getToken();
   //   console.log(token);
   const { startTime, fights } = await getFightsData(ReportID);
-  return { ReportStartTime: startTime, ReportFightData: fights };
+  return { ReportStartTime: Math.floor(startTime / 1000), ReportFightData: fights };
 }

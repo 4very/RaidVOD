@@ -16,5 +16,5 @@ export default function ContentPage(props) {
   // const id = GetTwitchVODStart(VODId);
   let { DescriptionText } = props;
 
-  return <div>{DescriptionText}</div>;
+  return <pre>{DescriptionText}</pre>;
 }
