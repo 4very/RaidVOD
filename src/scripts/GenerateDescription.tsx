@@ -11,6 +11,7 @@ export default async function GenerateDescription(
   if (VODId == undefined || ReportID == undefined) {
     return undefined;
   }
+  console.log(process.env);
 
   const VODStartTime = await GetTwitchVODStart(VODId.toString());
   const { ReportStartTime, ReportFightData } = await GetWCLFightTimings(ReportID.toString());
