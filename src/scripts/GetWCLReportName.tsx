@@ -2,7 +2,7 @@ async function getToken(): Promise<string> {
   const clientId = process.env.WCLClientID;
   const clientSecret = process.env.WCLClientPrivate;
 
-  const basicAuth = btoa(`${clientId}:${clientSecret}`);
+  const basicAuth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 
   const response = await fetch('https://www.warcraftlogs.com/oauth/token', {
     method: 'POST',
