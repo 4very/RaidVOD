@@ -4,7 +4,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import React, { useState } from 'react';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  let { ReportID, VODId } = context.params;
+  const { ReportID, VODId } = context.params;
   const in_props = await GenerateDescription(VODId, ReportID);
 
   return {
@@ -14,9 +14,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 export default function ContentPage(props) {
   // const id = GetTwitchVODStart(VODId);
-  let { DescriptionText, ReportName, VodName } = props;
+  const { DescriptionText, ReportName, VodName } = props;
   const [isCopied, setCopied] = useState(false);
-  const [style, setStyle] = useState({ display: 'none' });
+  const [style, setStyle] = useState({ display: `none` });
 
   return (
     <div className="w-screen h-screen place-items-center justify-center flex ">
@@ -36,18 +36,18 @@ export default function ContentPage(props) {
         <div style={style}>
           <div className="mx-2 absolute">
             <div className="bg-gray-700 text-white text-xs rounded py-1 px-4 right-0 bottom-full shadow-lg">
-              {isCopied ? 'Copied' : 'Click to Copy'}
+              {isCopied ? `Copied` : `Click to Copy`}
             </div>
           </div>
         </div>
         <CopyToClipboard text={DescriptionText} onClick={() => setCopied(true)}>
           <pre
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight hover:ring-1 hover:ring-purple-200 hover:shadow-outline hover:shadow-lg"
-            onMouseEnter={(e) => {
-              setStyle({ display: 'block' });
+            onMouseEnter={() => {
+              setStyle({ display: `block` });
             }}
-            onMouseLeave={(e) => {
-              setStyle({ display: 'none' });
+            onMouseLeave={() => {
+              setStyle({ display: `none` });
             }}>
             {DescriptionText}
           </pre>

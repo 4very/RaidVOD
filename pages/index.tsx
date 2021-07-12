@@ -1,4 +1,3 @@
-import { Router } from 'next/dist/client/router';
 import { useRouter } from 'next/router';
 
 export default function Home() {
@@ -8,11 +7,11 @@ export default function Home() {
     event.preventDefault();
     const vodid: string = event.target.TVODID.value;
     const rid: string = event.target.WCLID.value;
-    var link: string = '/';
-    if (vodid == '' && rid == '') {
-      link = '/report/' + event.target.WCLID.placeholder + '/' + event.target.TVODID.placeholder;
+    let link = `/`;
+    if (vodid == `` && rid == ``) {
+      link = `/report/` + event.target.WCLID.placeholder + `/` + event.target.TVODID.placeholder;
     } else {
-      link = '/report/' + vodid + '/' + rid;
+      link = `/report/` + vodid + `/` + rid;
     }
 
     router.push(link);
