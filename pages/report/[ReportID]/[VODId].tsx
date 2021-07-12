@@ -1,20 +1,58 @@
-import { useRouter } from 'next/router';
-import CreateDescription from '../../../src/scripts/CreateDescription';
 import GenerateDescription from '../../../src/scripts/GenerateDescription';
-import GetTwitchVODStart from '../../../src/scripts/GetTwitchVODStart';
+import { GetServerSideProps } from 'next';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import React, { useState } from 'react';
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   let { ReportID, VODId } = context.params;
-  const DescriptionText = await GenerateDescription(VODId, ReportID);
+  const in_props = await GenerateDescription(VODId, ReportID);
 
   return {
-    props: { DescriptionText: DescriptionText }, // will be passed to the page component as props
+    props: in_props, // will be passed to the page component as props
   };
-}
+};
 
 export default function ContentPage(props) {
   // const id = GetTwitchVODStart(VODId);
-  let { DescriptionText } = props;
+  let { DescriptionText, ReportName, VodName } = props;
+  const [isCopied, setCopied] = useState(false);
+  const [style, setStyle] = useState({ display: 'none' });
 
-  return <pre>{DescriptionText}</pre>;
+  return (
+    <div className="w-screen h-screen place-items-center justify-center flex ">
+      <div className="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <table className="mb-5">
+          <tbody>
+            <tr>
+              <td>Report Title:</td>
+              <td>{ReportName}</td>
+            </tr>
+            <tr>
+              <td>Twitch Vod Title:</td>
+              <td>{VodName}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style={style}>
+          <div className="mx-2 absolute">
+            <div className="bg-gray-700 text-white text-xs rounded py-1 px-4 right-0 bottom-full shadow-lg">
+              {isCopied ? 'Copied' : 'Click to Copy'}
+            </div>
+          </div>
+        </div>
+        <CopyToClipboard text={DescriptionText} onClick={() => setCopied(true)}>
+          <pre
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight hover:ring-1 hover:ring-purple-200 hover:shadow-outline hover:shadow-lg"
+            onMouseEnter={(e) => {
+              setStyle({ display: 'block' });
+            }}
+            onMouseLeave={(e) => {
+              setStyle({ display: 'none' });
+            }}>
+            {DescriptionText}
+          </pre>
+        </CopyToClipboard>
+      </div>
+    </div>
+  );
 }

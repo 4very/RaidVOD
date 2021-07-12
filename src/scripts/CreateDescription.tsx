@@ -58,7 +58,7 @@ export default function CreateDescription(
       DescriptorString += fight.name;
       DescriptorString +=
         PullCounter[fight.encounterID] > 1 ? ` P${PullCounter[fight.encounterID]}` : '';
-      DescriptorString += fight.kill ? ' Kill' : ` (${Math.floor(fight.fightPercentage)}%)`;
+      DescriptorString += fight.kill ? ' Kill' : ` (${fight.fightPercentage.toFixed(1)}%)`;
     } else {
       DescriptorString += 'Trash';
     }
