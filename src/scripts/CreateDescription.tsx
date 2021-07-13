@@ -30,11 +30,12 @@ export default function CreateDescription(
   ReportFightData: FightData[]
 ) {
   const DescriptionArray: String[] = [];
-  if (TwitchStartTime > ReportStartTime) {
-    DescriptionArray.push('0:00 Pre Raid');
-  } else {
-    // do something
-  }
+  // if (TwitchStartTime < ReportStartTime) {
+  //   DescriptionArray.push('0:00 Pre Raid');
+  // } else {
+  //   // do something
+  // }
+  DescriptionArray.push('0:00 Pre Raid');
 
   let LastEncounterID: number = undefined;
   let PullCounter = new Object();

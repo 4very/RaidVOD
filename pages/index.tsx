@@ -11,7 +11,7 @@ export default function Home() {
     if (vodid == `` && rid == ``) {
       link = `/report/` + event.target.WCLID.placeholder + `/` + event.target.TVODID.placeholder;
     } else {
-      link = `/report/` + vodid + `/` + rid;
+      link = `/report/` + rid + `/` + vodid;
     }
 
     router.push(link);
