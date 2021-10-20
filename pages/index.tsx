@@ -26,7 +26,7 @@ export default function Home() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-1 focus:ring-purple-500 focus:shadow-outline"
               id="TVODID"
               type="text"
-              placeholder="1083966977"
+              placeholder="1181599130"
             />
           </div>
           <div className="mb-6">
@@ -37,7 +37,7 @@ export default function Home() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:ring-1 focus:ring-purple-500 focus:shadow-outline"
               id="WCLID"
               type="text"
-              placeholder="fHyjqYB1Qwc7D2AN"
+              placeholder="KBJrRqPanyHTp1Yh"
             />
           </div>
           <div className="flex items-center justify-between flex-wrap-reverse">

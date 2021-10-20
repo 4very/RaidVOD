@@ -1,16 +1,24 @@
 import GenerateDescription from '../../../src/scripts/GenerateDescription';
-import { GetServerSideProps } from 'next';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import React, { useState } from 'react';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export async function getStaticProps(context) {
   const { ReportID, VODId } = context.params;
   const in_props = await GenerateDescription(VODId, ReportID);
 
   return {
     props: in_props, // will be passed to the page component as props
   };
-};
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { ReportID: `KBJrRqPanyHTp1Yh`, VODId: `1181599130` } }, // See the "paths" section below
+    ],
+    fallback: true, // See the "fallback" section below
+  };
+}
 
 export default function ContentPage(props) {
   // const id = GetTwitchVODStart(VODId);
